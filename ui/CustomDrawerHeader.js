@@ -3,13 +3,13 @@ import { Ionicons } from "@expo/vector-icons";
 
 function CustomDrawerHeader({ navigation }) {
   return (
-    <Pressable onPress={() => navigation.openDrawer()}>
-      <View style={styles.cont}>
-        <View style={styles.btn}>
+    <View style={styles.cont}>
+      <View style={styles.btn}>
+        <Pressable onPress={() => navigation.openDrawer()}>
           <Ionicons name="menu" size={26} color="black" />
-        </View>
+        </Pressable>
       </View>
-    </Pressable>
+    </View>
   );
 }
 
@@ -17,7 +17,7 @@ export default CustomDrawerHeader;
 
 const styles = StyleSheet.create({
   cont: {
-    height: 70,
+    // height: 70,
     justifyContent: "center",
     paddingHorizontal: 20,
   },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    bottom: -30,
+    bottom: -90,
     left: 15,
-  },
+  }
 });

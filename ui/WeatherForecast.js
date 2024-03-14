@@ -23,9 +23,9 @@ function WeatherForecast() {
         }
       }
 
-      return fetchData;
+      fetchData();
     },
-    [weather, setWeather]
+    [setWeather]
   );
 
   return (
