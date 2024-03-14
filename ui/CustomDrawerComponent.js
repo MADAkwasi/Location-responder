@@ -1,7 +1,10 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import DrawerItem from "../components/DrawerItem";
+import { useNavigation } from "@react-navigation/native";
 
-function CustomDrawerComponent({ navigation }) {
+function CustomDrawerComponent() {
+  const navigation = useNavigation();
+
   return (
     <View>
       <View style={styles.cont}>
@@ -11,21 +14,26 @@ function CustomDrawerComponent({ navigation }) {
         />
         <View style={styles.txtCont}>
           <Text style={styles.name}>Akosua Adoma</Text>
-          <Pressable onPress={() => navigation.navigate("Settings")}>
+          <Pressable onPress={() => navigation.navigate("Profile")}>
             <Text style={styles.link}>View Profile</Text>
           </Pressable>
         </View>
       </View>
       <View style={styles.listCont}>
-        <DrawerItem label="Settings" icon="settings-outline" />
-        <DrawerItem label="Support" icon="help-circle" />
-        <DrawerItem label="Safety" icon="shield-checkmark" />
+        <DrawerItem
+          label="Settings"
+          icon="settings-outline"
+          navigate={"Settings"}
+        />
+        <DrawerItem label="Support" icon="help-circle" navigate="Support" />
+        <DrawerItem label="Safety" icon="shield-checkmark" navigate="Safety" />
       </View>
       <View style={styles.footer}>
         <DrawerItem
           style={{ paddingBottom: 22, paddingHorizontal: 0, marginRight: 15 }}
           label="About"
           icon="information-circle-outline"
+          navigate="About"
         />
       </View>
     </View>

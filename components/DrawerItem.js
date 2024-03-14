@@ -1,12 +1,19 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-function DrawerItem({ label, icon, style }) {
+function DrawerItem({ label, icon, style, navigate }) {
+  const navigation = useNavigation();
   return (
-    <View style={[styles.cont, style]}>
-      <Ionicons name={icon} size={28} color="black" />
-      <Text style={styles.txt}>{label}</Text>
-    </View>
+    <Pressable
+      android_ripple={{ color: "#d1d1d1" }}
+      onPress={() => navigation.navigate(navigate)}
+    >
+      <View style={[styles.cont, style]}>
+        <Ionicons name={icon} size={28} color="black" />
+        <Text style={styles.txt}>{label}</Text>
+      </View>
+    </Pressable>
   );
 }
 
@@ -24,5 +31,5 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "400",
     fontFamily: "OpenSans",
-  },
+  }
 });
