@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "shuttleTracker",
-    "slug": "shuttleTracker",
+    "slug": "shuttle-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,6 +26,12 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "fonts": "./assets/fonts/"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e467026c-3e4e-4740-9bed-dc719e1d55ba"
+      }
+    },
+    "owner": "mad_akwasi"
   }
 }
