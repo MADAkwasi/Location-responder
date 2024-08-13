@@ -3,6 +3,14 @@
     {
       "fontFamily": "OpenSans",
       "fontFiles": ["OpenSans-Regular.ttf"]
+    },
+    {
+      "fontFamily": "RubikMaps",
+      "fontFiles": ["RubikMaps-Regular.ttf"]
+    },
+    {
+      "fontFamily": "OpenSans-Bold",
+      "fontFiles": ["OpenSans-Bold.ttf"]
     }
   ]
 }

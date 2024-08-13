@@ -1,19 +1,24 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import DrawerItem from "../components/DrawerItem";
 import { useNavigation } from "@react-navigation/native";
+import { useGlobalState } from "../context/GlobalStateContext";
 
 function CustomDrawerComponent() {
   const navigation = useNavigation();
+  const { student } = useGlobalState();
+  const { firstName, lastName } = student;
 
   return (
     <View>
       <View style={styles.cont}>
         <Image
           style={styles.img}
-          source={require("../assets/uifaces-human-image.jpg")}
+          source={require("../assets/default-user.jpg")}
         />
         <View style={styles.txtCont}>
-          <Text style={styles.name}>Akosua Adoma</Text>
+          <Text style={styles.name}>
+            {firstName} {lastName}
+          </Text>
           <Pressable onPress={() => navigation.navigate("Profile")}>
             <Text style={styles.link}>View Profile</Text>
           </Pressable>
@@ -27,6 +32,12 @@ function CustomDrawerComponent() {
         />
         <DrawerItem label="Support" icon="help-circle" navigate="Support" />
         <DrawerItem label="Safety" icon="shield-checkmark" navigate="Safety" />
+        <DrawerItem
+          label="Log out"
+          icon="exit-outline"
+          navigate="Log In"
+          reset={true}
+        />
       </View>
       <View style={styles.footer}>
         <DrawerItem

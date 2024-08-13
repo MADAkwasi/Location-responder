@@ -1,18 +1,20 @@
 import "react-native-gesture-handler";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import Home from "./screens/Home";
-import Settings from "./screens/Settings";
-import CustomDrawerComponent from "./ui/CustomDrawerComponent";
+import DrawerNavigation from "./navigations/DrawerNavigation";
+import { GlobalStateProvider } from "./context/GlobalStateContext";
+import Welcome from "./screens/Welcome";
+import Signup from "./screens/Signup";
+import Login from "./screens/Login";
 import { useFonts } from "expo-font";
-import Profile from "./screens/Profile";
-import CustomDrawerHeader from "./ui/CustomDrawerHeader";
 
-const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
     OpenSans: require("./assets/fonts/OpenSans-Regular.ttf"),
+    OpenSansBold: require("./assets/fonts/OpenSans-Bold.ttf"),
+    RubikMaps: require("./assets/fonts/RubikMaps-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -20,28 +22,25 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContent={() => <CustomDrawerComponent />}
-        screenOptions={{
-          drawerStyle: {
-            backgroundColor: "#e0e0e0",
-          },
-          drawerType: "slide",
-        }}
-      >
-        <Drawer.Screen
-          name="Home"
-          component={Home}
-          options={{
-            header: ({ navigation }) => (
-              <CustomDrawerHeader navigation={navigation} />
-            ),
+    <GlobalStateProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Welcome"
+          screenOptions={{
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: "white",
+            },
+            animationTypeForReplace: "push",
+            animation: "slide_from_right",
           }}
-        />
-        <Drawer.Screen name="Settings" component={Settings} />
-        <Drawer.Screen name="Profile" component={Profile} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+        >
+          <Stack.Screen name="Welcome" component={Welcome} />
+          <Stack.Screen name="Sign Up" component={Signup} />
+          <Stack.Screen name="Log In" component={Login} />
+          <Stack.Screen name="Main" component={DrawerNavigation} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GlobalStateProvider>
   );
 }
