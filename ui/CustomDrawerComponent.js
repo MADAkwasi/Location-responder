@@ -13,7 +13,7 @@ function CustomDrawerComponent() {
       <View style={styles.cont}>
         <Image
           style={styles.img}
-          source={require("../assets/default-user.jpg")}
+          source={require("../assets/images/profile.jpg")}
         />
         <View style={styles.txtCont}>
           <Text style={styles.name}>

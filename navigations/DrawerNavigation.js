@@ -27,7 +27,15 @@ function DrawerNavigation() {
           ),
         }}
       />
-      <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          header: ({ navigation }) => (
+            <CustomDrawerHeader navigation={navigation} />
+          ),
+        }}
+      />
       <Drawer.Screen name="Profile" component={Profile} />
     </Drawer.Navigator>
   );
