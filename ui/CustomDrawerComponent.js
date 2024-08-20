@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import DrawerItem from "../components/DrawerItem";
 import { useNavigation } from "@react-navigation/native";
 import { useGlobalState } from "../context/GlobalStateContext";
+import Txt from "../components/Text";
 
 function CustomDrawerComponent() {
   const navigation = useNavigation();
@@ -20,7 +21,9 @@ function CustomDrawerComponent() {
             {firstName} {lastName}
           </Text>
           <Pressable onPress={() => navigation.navigate("Profile")}>
-            <Text style={styles.link}>View Profile</Text>
+            <Txt style={{ color: "#05b31c", fontSize: 14, marginVertical: 0 }}>
+              View Profile
+            </Txt>
           </Pressable>
         </View>
       </View>
@@ -75,11 +78,6 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 22,
     fontFamily: "OpenSans",
-  },
-  link: {
-    textAlign: "center",
-    color: "#05b31c",
-    fontSize: 14,
   },
   txtCont: {
     gap: 3,

@@ -1,13 +1,30 @@
 import { useEffect, useState } from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import WeatherForecast from "../ui/WeatherForecast";
 import MapView, { Marker } from "react-native-maps";
 import useGetActiveShuttles from "../providers/shuttleProviders";
 import { useGlobalState } from "../context/GlobalStateContext";
+import * as Location from "expo-location";
 
 function Home() {
   const { shuttles } = useGetActiveShuttles();
-  const { token, setToken } = useGlobalState();
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+
+      let loc = await Location.getCurrentPositionAsync({});
+      setLat(loc.coords.latitude);
+      setLng(loc.coords.longitude);
+    })();
+  }, []);
 
   return (
     <View style={styles.cont}>
@@ -23,11 +40,25 @@ function Home() {
         <Marker
           coordinate={{ latitude: 6.674239, longitude: -1.5675002 }}
           title="Shuttle 1"
-          description="Campus - Gaza || Driver: Kwaku Manu"
+          description="KSB - Commercial Area || Driver: Kwaku Manu"
         >
           <View style={styles.markerCont}>
             <Image
               source={require("../assets/images/black_marker.png")}
+              style={styles.markerImg}
+              resizeMode="contain"
+            />
+          </View>
+        </Marker>
+        <Marker
+          coordinate={{
+            latitude: lat,
+            longitude: lng,
+          }}
+        >
+          <View style={styles.markerCont}>
+            <Image
+              source={require("../assets/images/user_marker.png")}
               style={styles.markerImg}
               resizeMode="contain"
             />

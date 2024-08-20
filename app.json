@@ -25,6 +25,14 @@
       "favicon": "./assets/favicon.png",
       "fonts": "./assets/fonts/"
     },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow TracSit to use your location."
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "e467026c-3e4e-4740-9bed-dc719e1d55ba"
