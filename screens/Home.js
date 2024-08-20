@@ -50,20 +50,7 @@ function Home() {
             />
           </View>
         </Marker>
-        <Marker
-          coordinate={{
-            latitude: lat,
-            longitude: lng,
-          }}
-        >
-          <View style={styles.markerCont}>
-            <Image
-              source={require("../assets/images/user_marker.png")}
-              style={styles.markerImg}
-              resizeMode="contain"
-            />
-          </View>
-        </Marker>
+        <Marker coordinate={{ latitude: lat, longitude: lng }} />
       </MapView>
       <WeatherForecast />
     </View>
