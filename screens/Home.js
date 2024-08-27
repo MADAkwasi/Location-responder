@@ -11,6 +11,10 @@ function Home() {
   const [errorMsg, setErrorMsg] = useState(null);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
+  const latlng = [
+    { coords: { latitude: 6.674239, longitude: -1.5675002 } },
+    { coords: { latitude: lat, longitude: lng } },
+  ];
 
   useEffect(() => {
     (async () => {
@@ -50,7 +54,6 @@ function Home() {
             />
           </View>
         </Marker>
-        <Marker coordinate={{ latitude: lat, longitude: lng }} />
       </MapView>
       <WeatherForecast />
     </View>
