@@ -5,16 +5,15 @@ import MapView, { Marker } from "react-native-maps";
 import useGetActiveShuttles from "../providers/shuttleProviders";
 import { useGlobalState } from "../context/GlobalStateContext";
 import * as Location from "expo-location";
+import io from "socket.io-client";
 
 function Home() {
   const { shuttles } = useGetActiveShuttles();
   const [errorMsg, setErrorMsg] = useState(null);
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
-  const latlng = [
-    { coords: { latitude: 6.674239, longitude: -1.5675002 } },
-    { coords: { latitude: lat, longitude: lng } },
-  ];
+  const [location, setLocation] = useState();
+  const socket = io("https://web-socket-setup.onrender.com"); // Replace with your server URL and port
 
   useEffect(() => {
     (async () => {
@@ -28,6 +27,17 @@ function Home() {
       setLat(loc.coords.latitude);
       setLng(loc.coords.longitude);
     })();
+  }, []);
+
+  useEffect(() => {
+    socket.on("locationUpdate", (data) => {
+      console.log("Received shuttle location:", data);
+      setLocation(data);
+    });
+
+    return () => {
+      socket.disconnect(); // Disconnect from the WebSocket server
+    };
   }, []);
 
   return (
